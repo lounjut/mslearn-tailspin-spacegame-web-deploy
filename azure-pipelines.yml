@@ -88,6 +88,7 @@ stages:
   - deployment: Deploy
     pool:
       vmImage: 'ubuntu-18.04'
+      name: default
     environment: dev
     variables:
     - group: Release
@@ -112,6 +113,7 @@ stages:
   - deployment: Deploy
     pool:
       vmImage: 'ubuntu-18.04'
+      name: default
     environment: test
     variables:
     - group: Release
@@ -135,6 +137,7 @@ stages:
   - deployment: Deploy
     pool:
       vmImage: 'ubuntu-18.04'
+      name: default
     environment: staging
     variables:
     - group: Release
