@@ -128,7 +128,7 @@ stages:
                             Write-Host "Auto Generated SQL Update Script:"
                             Get-Content d:\a\1\s\GeneratedOutputFiles\$(databasename)_Script.sql | foreach {Write-Output $_}
 
-- stage: DBAVerificationApply
+- stage: 'DBAVerificationApply'
   displayName: Apply database schema changes
   dependsOn: DBAVerificationScript
   jobs:
@@ -158,13 +158,6 @@ stages:
                         DeploymentAction: 'Publish'
                         DacpacFile: '$(Pipeline.Workspace)/dropDacpac/Tailspin.SpaceGame.Database/bin/Debug/Tailspin.SpaceGame.Database.dacpac'
                         IpDetectionMethod: 'AutoDetect'
-                     - task: PowerShell@2
-                       displayName: Show auto-generate SQL script
-                       inputs:
-                          targetType: inline
-                          script: | 
-                            Write-Host "Auto Generated SQL Update Script:"
-                            Get-Content d:\a\1\s\GeneratedOutputFiles\$(databasename)_Script.sql | foreach {Write-Output $_}
 
 - stage: 'Dev'
   displayName: 'Deploy to the dev environment'
